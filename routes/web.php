@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [ShopController::class, 'home'])->name('home')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,5 +29,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-Route::get('/', [ShopController::class, 'home'])->name('shops.home');
+Route::get('/home', [ShopController::class, 'home'])->name('shops.home');
 Route::post('/townInformation', [SearchController::class, 'home'])->name('shops.home');

@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Shop;
+use App\Models\Town;
 
 class ShopController extends Controller
 {
-    public function home(Category $category)
+    public function home(Town $town)
     {
-        // カテゴリーに関連するグループ一覧を取得し、ビューに渡す
-        return view('shops.home');
+        return view('shops.home')->with(['towns' => $town->get()]);;
     }
 }

@@ -16,10 +16,14 @@
    <input  type="text" name="input" value="{{request('search')}}" placeholder="キーワードを入力">
    <!-- 送信ボタンを用意する -->
    <input type="submit" name="search" value="Search">
-   @foreach ($towns as $town)
-{{ $town->t_name }}
-@endforeach
 </form>
+
+@if(isset($towns))
+    @foreach ($towns as $town)
+        {{ $town->t_name }}
+    @endforeach
+@endif
+
 </div>
 </div>
 </body>
