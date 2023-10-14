@@ -29,3 +29,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+Route::get('/', [ShopController::class, 'home'])->name('shops.home');
+Route::post('/townInformation', [SearchController::class, 'home'])->name('shops.home');
