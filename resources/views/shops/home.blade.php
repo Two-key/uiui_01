@@ -11,17 +11,22 @@
 <div class='post'>
 <h2 class='title'>どこの町の情報を知りたい？</h2>
 <h2 class='body'>Which town do you want to learn?</h2>
-<form action="home.blade.php" method="post">
+<form action="{{ route('search') }}" method="get">
    <!-- 任意の<input>要素＝入力欄などを用意する -->
-   <input  type="text" name="input" value="{{request('search')}}" placeholder="キーワードを入力">
+   <input  type="text" name="search" value="{{ $search ?? '' }}" placeholder="キーワードを入力">
    <!-- 送信ボタンを用意する -->
-   <input type="submit" name="search" value="Search">
+   <input type="submit" value="Search">
 </form>
 
-@if(isset($towns))
-    @foreach ($towns as $town)
-        {{ $town->t_name }}
-    @endforeach
+@if(isset($search))
+    @if(isset($towns))
+        <h3>該当する町の名前:</h3>
+        <ul>
+            @foreach ($towns as $town)
+                <li>{{ $town->t_name }}</li>
+            @endforeach
+        </ul>
+    @endif
 @endif
 
 </div>

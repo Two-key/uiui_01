@@ -30,4 +30,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 Route::get('/home', [ShopController::class, 'home'])->name('shops.home');
-Route::post('/townInformation', [SearchController::class, 'home'])->name('shops.home');
+Route::get('/search', [SearchController::class, 'search'])->name('search');

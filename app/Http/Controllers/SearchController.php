@@ -4,20 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Town; // Town モデルを使用するためにインポート
+use App\Models\Town;
 
 class SearchController extends Controller
 {
-    public function search()
+    public function search(Request $request)
     {
-        // モデルからデータを取得
-        $towns = Town::orderBy('created_at', 'asc')->where(function ($query) {
-            // 検索機能
-            if ($search = request('search')) {
-                $query->where('t_name', 'LIKE', "%{$search}%");
-            }
-        })->paginate(8);
-
-        return view('your_view', compact('towns')); // テンプレートにデータを渡す
+        // クエリから検索キーワードを取得
+        $search = $request->input('search');
+        
+        // 町の名前を検索
+        $towns = Town::where('t_name', 'LIKE', "%{$search}%")->get();
+        
+        // クエリログを有効化し、ログを取得
+        \DB::enableQueryLog();
+        $townsQuery = Town::where('t_name', 'LIKE', "%{$search}%")->toSql();
+        \DB::getQueryLog();
+        
+        if ($search) {
+            // カテゴリーIDによるフィルタリングを適用
+            $filteredTowns = $towns;
+        } else {
+            $filteredTowns = Town::all();
+        }
+        
+        return view('shops.home')->with(['towns' => $filteredTowns, 'search' => $search, 'townsQuery' => $townsQuery]);
     }
 }
