@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->foreignId('trouble_id');
             $table->foreignId('user_id')
                 ->constrained();
+            $table->foreignId('trouble_id');
+            $table->timestamps();
         });
     }
 

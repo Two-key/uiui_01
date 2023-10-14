@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('comment');
             $table->foreignId('town_id');
-            $table->string('image_url');
             $table->string('evaluation');
         });
     }
