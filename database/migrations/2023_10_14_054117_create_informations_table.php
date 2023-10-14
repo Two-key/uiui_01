@@ -16,6 +16,11 @@ return new class extends Migration
         Schema::create('informations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('title');
+            $table->string('comment');
+            $table->foreignId('town_id');
+            $table->string('image_url');
+            $table->string('evaluation');
         });
     }
 
