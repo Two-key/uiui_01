@@ -17,8 +17,8 @@ class EvaluationSeeder extends Seeder
     public function run()
     {
         DB::table('evaluations')->insert([
-            'information_id' => '1',
             'user_id' => '1',
+            'information_id' => '1',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
