@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->string('address');
+            $table->foreignId('category_id');
+            $table->foreignId('town_id');
         });
     }
 
