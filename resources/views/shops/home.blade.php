@@ -23,7 +23,7 @@
         <h3>該当する町の名前:</h3>
         <ul>
             @foreach ($towns as $town)
-                <li>{{ $town->t_name }}</li>
+                <a href="/{{ $town->id }}/about"><li>{{ $town->name }}</li></a>
             @endforeach
         </ul>
     @endif

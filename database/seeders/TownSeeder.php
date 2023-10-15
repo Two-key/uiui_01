@@ -17,7 +17,13 @@ class TownSeeder extends Seeder
     public function run()
     {
         DB::table('towns')->insert([
-            't_name' => '〇〇町',
+            'name' => '〇〇町',
+            'address' => '福岡県福岡市〇〇町',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+            ]);
+        DB::table('towns')->insert([
+            'name' => '福岡町',
             'address' => '福岡県福岡市〇〇町',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
