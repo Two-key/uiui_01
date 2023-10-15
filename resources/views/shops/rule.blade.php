@@ -6,14 +6,16 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 </head>
 <body>
-<h1>お店</h1>
-<h2>shop</h2>
-
+<h1>基本ルール</h1>
+<h2>Rule</h2>
 
 <ul>
-    @foreach ($shops as $shop)
-        <li>{{ $shop->name }}</li>
+    @foreach ($rules as $rule)
+        <li>{{ $rule->title }}
+        {{ $rule->comment }}
+        </li>
     @endforeach
 </ul>
+
 </body>
 </x-app-layout>

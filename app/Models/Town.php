@@ -13,4 +13,8 @@ class Town extends Model
     {
         return $this->hasMany(Shop::class);
     }
+    public function rules()
+    {
+        return $this->hasMany(Rule::class);
+    }
 }

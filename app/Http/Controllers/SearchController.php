@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Town;
+use App\Models\Shop;
+use App\Models\Rule;
 
 class SearchController extends Controller
 {
@@ -33,8 +35,14 @@ class SearchController extends Controller
         $town = Town::find(1); 
         return view('shops.about', ['town' => $town]);
     }
-    public function shopsearch(Shop $shop)
+    public function shopsearch(Town $town ,Shop $shop)
     {
-        return view('shops.home')->with(['shops' => $shop->get()]);;
+        $town = Town::find(1); 
+        return view('shops.shop')->with(['shops' => $shop->get()]);;
+    }
+    public function rule(Town $town ,Rule $rule)
+    {
+        $town = Town::find(1); 
+        return view('shops.rule')->with(['rules' => $rule->get()]);;
     }
 }
