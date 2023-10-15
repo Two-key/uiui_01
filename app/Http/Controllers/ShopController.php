@@ -12,4 +12,12 @@ class ShopController extends Controller
     {
         return view('shops.home')->with(['towns' => $town->get()]);;
     }
+    public function overview()
+    {
+        return view('shops.overview');;
+    }
+    public function addInformation()
+    {
+        return view('shops.addInformation');;
+    }
 }

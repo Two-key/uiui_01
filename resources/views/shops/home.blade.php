@@ -1,7 +1,7 @@
 <x-app-layout>
 <head>
 <meta charset="utf-8">
-<title>Blog</title>
+<title>Home</title>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 </head>

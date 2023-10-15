@@ -5,29 +5,26 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SearchController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', [ShopController::class, 'home'])->name('home')->middleware('auth');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('/', function () {
+    return view('welcome');
 });
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+Route::prefix('/')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::get('/home', [ShopController::class, 'home'])->name('shops.home');
+    Route::get('/overview', [ShopController::class, 'overview'])->name('overview');
+    Route::get('/addInformation', [ShopController::class, 'addInformation'])->name('addInformation');
+    Route::get('/search', [SearchController::class, 'search'])->name('search');
+    Route::get('/{town}/about', [SearchController::class, 'about'])->name('about');
+    
+});
+ });
 require __DIR__.'/auth.php';
-Route::get('/home', [ShopController::class, 'home'])->name('shops.home');
-Route::get('/search', [SearchController::class, 'search'])->name('search');

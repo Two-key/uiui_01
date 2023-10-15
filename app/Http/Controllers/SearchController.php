@@ -30,4 +30,9 @@ class SearchController extends Controller
         
         return view('shops.home')->with(['towns' => $filteredTowns, 'search' => $search, 'townsQuery' => $townsQuery]);
     }
+    public function about(Town $town)
+    {
+        $town = Town::find(1); 
+        return view('shops.about', ['town' => $town]);
+    }
 }
