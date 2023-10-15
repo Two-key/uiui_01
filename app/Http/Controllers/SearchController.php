@@ -14,18 +14,16 @@ class SearchController extends Controller
         $search = $request->input('search');
         
         // 町の名前を検索
-        $towns = Town::where('t_name', 'LIKE', "%{$search}%")->get();
+        $towns = Town::where('name', 'like', "%{$search}%")->get();
         
         // クエリログを有効化し、ログを取得
         \DB::enableQueryLog();
-        $townsQuery = Town::where('t_name', 'LIKE', "%{$search}%")->toSql();
+        $townsQuery = Town::where('name', 'like', "%{$search}%")->toSql();
         \DB::getQueryLog();
         
         if ($search) {
             // カテゴリーIDによるフィルタリングを適用
             $filteredTowns = $towns;
-        } else {
-            $filteredTowns = Town::all();
         }
         
         return view('shops.home')->with(['towns' => $filteredTowns, 'search' => $search, 'townsQuery' => $townsQuery]);
