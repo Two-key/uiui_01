@@ -4,6 +4,7 @@
 <title>Home</title>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+@vite('resources/css/app.css')
 </head>
 <body>
 <h1>〇〇</h1>
