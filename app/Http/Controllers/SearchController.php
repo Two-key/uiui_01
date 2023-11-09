@@ -11,30 +11,35 @@ use App\Models\Rule;
 class SearchController extends Controller
 {
     public function search(Request $request)
-    {
-        // クエリから検索キーワードを取得
-        $search = $request->input('search');
-        
-        // 町の名前を検索
-        $towns = Town::where('name', 'like', "%{$search}%")->get();
-        
-        // クエリログを有効化し、ログを取得
-        \DB::enableQueryLog();
-        $townsQuery = Town::where('name', 'like', "%{$search}%")->toSql();
-        \DB::getQueryLog();
-        
-        if ($search) {
-            // カテゴリーIDによるフィルタリングを適用
-            $filteredTowns = $towns;
-        }
-        
-        return view('shops.home')->with(['towns' => $filteredTowns, 'search' => $search, 'townsQuery' => $townsQuery]);
+{
+    $search = $request->input('search');
+    
+    // 町の名前を検索
+    $towns = Town::where('name', 'like', "%{$search}%")->get();
+    
+    if ($search) {
+        // カテゴリーIDによるフィルタリングを適用
+        // この部分は要件に応じて追加
+        $filteredTowns = $towns;
+
+        // 検索結果の町の名前をセッションに保存
+        $request->session()->put('selected_town_name', $filteredTowns->first()->name);
+    } else {
+        $filteredTowns = [];
     }
-    public function about(Town $town)
-    {
-        $town = Town::find(1); 
-        return view('shops.about', ['town' => $town]);
-    }
+    return view('shops.home')->with(['towns' => $filteredTowns, 'search' => $search]);
+}
+
+   public function about(Request $request, Town $town)
+{
+    // セッションから町の名前を取得
+    $selectedTownName = $request->session()->get('selected_town_name');
+    
+    return view('shops.about', ['town' => $town, 'selectedTownName' => $selectedTownName]);
+}
+
+
+
     public function shopsearch(Town $town ,Shop $shop)
     {
         $town = Town::find(1); 

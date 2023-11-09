@@ -24,6 +24,7 @@ Route::prefix('/')->group(function () {
     Route::get('/addInformation', [ShopController::class, 'addInformation'])->name('addInformation');
     Route::get('/search', [SearchController::class, 'search'])->name('search');
     Route::get('/{town}/about', [SearchController::class, 'about'])->name('about');
+    Route::post('/{town}/towns', [RegisterController::class, 'registerTown'])->name('registerTown');
     Route::get('/{town}/shops', [SearchController::class, 'shopsearch'])->name('shopsearch');
     Route::get('/{town}/rules', [SearchController::class, 'rule'])->name('rule');
 });
