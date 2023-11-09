@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 </head>
 <body>
-<h1>{{ $town->name }}の情報</h1>
+<h1>{{ $selectedTownName }}の情報</h1>
 <div class='towns'>
     <form action="/{{$town->id}}/towns" method="POST">
         @csrf

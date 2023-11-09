@@ -17,4 +17,8 @@ class Town extends Model
     {
         return $this->hasMany(Rule::class);
     }
+    public function mytowns()
+    {
+        return $this->hasMany(Mytown::class);
+    }
 }
