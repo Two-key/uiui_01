@@ -6,7 +6,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('welcome');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
