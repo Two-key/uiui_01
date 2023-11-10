@@ -17,9 +17,16 @@ class RuleSeeder extends Seeder
     public function run()
     {
         DB::table('rules')->insert([
+            'town_id' => '1',
             'title' => 'ごみ捨て',
             'comment' => '〇曜日に燃えるゴミ、第３土曜日に燃えないゴミ',
-            'town_id' => '1',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ]);
+         DB::table('rules')->insert([
+            'town_id' => '2',
+            'title' => 'ごみ捨て',
+            'comment' => '〇曜日に燃えるゴミ、第３土曜日に燃えないゴミ',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);

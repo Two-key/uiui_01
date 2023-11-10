@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\BoardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +26,8 @@ Route::prefix('/')->group(function () {
     Route::get('/search', [SearchController::class, 'search'])->name('search');
     Route::get('/{town}/about', [SearchController::class, 'about'])->name('about');
     Route::post('/{town}/towns', [RegisterController::class, 'registerTown'])->name('registerTown');
+    Route::get('/newinformation/{town}', [BoardController::class, 'newinformation'])->name('newinformation');
+    Route::get('/trouble/{town}', [BoardController::class, 'trouble'])->name('trouble');
     Route::get('/{town}/shops', [SearchController::class, 'shopsearch'])->name('shopsearch');
     Route::get('/{town}/rules', [SearchController::class, 'rule'])->name('rule');
 });

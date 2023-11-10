@@ -17,12 +17,14 @@ class TownSeeder extends Seeder
     public function run()
     {
         DB::table('towns')->insert([
+            'rule_id' => '1',
             'name' => '〇〇町',
             'address' => '福岡県福岡市〇〇町',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
             ]);
         DB::table('towns')->insert([
+            'rule_id' => '2',
             'name' => '福岡町',
             'address' => '福岡県福岡市〇〇町',
             'created_at' => new DateTime(),

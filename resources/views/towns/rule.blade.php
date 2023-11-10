@@ -10,11 +10,11 @@
 <h2>Rule</h2>
 
 <ul>
-    @foreach ($rules as $rule)
-        <li>{{ $rule->title }}
-        {{ $rule->comment }}
+    <!--foreach rules as $rule)
+        <li>{rule->title }}
+        {rule->comment }}
         </li>
-    @endforeach
+    endforeach -->
 </ul>
 
 </body>
