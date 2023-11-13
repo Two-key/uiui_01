@@ -37,9 +37,6 @@ class SearchController extends Controller
     
     return view('shops.about', ['town' => $town, 'selectedTownName' => $selectedTownName]);
 }
-
-
-
     public function shopsearch(Town $town ,Shop $shop)
     {
         $town = Town::find(1); 

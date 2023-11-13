@@ -1,18 +1,17 @@
 <x-app-layout>
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>Newinformation</title>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 </head>
 <body>
-<h1>基本ルール</h1>
-<h2>Rule</h2>
+<h1>{{$town->name}}に関する最新情報</h1>
     <ul>
-        @foreach ($rules as $rule)
+        @foreach ($articles as $article)
                 <li>
-                    {{ $rule->title }}
-                    {{ $rule->comment }}
+                    {{$article->title }}
+                    {{$article->comment }}
                 </li>
         @endforeach
     </ul>
