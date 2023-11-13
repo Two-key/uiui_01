@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Town;
 use App\Models\Shop;
 use App\Models\Rule;
+use App\Models\Article;
 
 class SearchController extends Controller
 {
@@ -37,6 +38,26 @@ class SearchController extends Controller
     
     return view('shops.about', ['town' => $town, 'selectedTownName' => $selectedTownName]);
 }
+
+    public function articlesearch(Town $town, Request $request)
+{
+    $articles = Article::where('town_id', $town->id)->get();
+    
+    $articlesearch = $request->input('articlesearch');
+    
+    $articles = Article::where('title', 'like', "%{$articlesearch}%")->get();
+    
+    if ($articlesearch) {
+        
+        $filteredArticles = $articles;
+
+        $request->session()->put('selected_article_name', $filteredArticles->first()->name);
+    } else {
+        $filteredArticles = [];
+    }
+    return view('towns.article')->with(['articles' => $filteredArticles, 'articlesearch' => $articlesearch, 'town' => $town]);
+}
+
     public function shopsearch(Town $town ,Shop $shop)
     {
         $town = Town::find(1); 
