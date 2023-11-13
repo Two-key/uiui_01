@@ -7,7 +7,7 @@ use App\Models\Town;
 
 class BoardController extends Controller
 {
-    public function newinformation(Request $request, Town $town)
+    public function newIformation(Request $request, Town $town)
     {
         return view('towns.newInformation', ['town' => $town]);
     }

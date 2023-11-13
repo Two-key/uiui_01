@@ -8,14 +8,14 @@
 <body>
 <h1>基本ルール</h1>
 <h2>Rule</h2>
-
-<ul>
-    <!--foreach rules as $rule)
-        <li>{rule->title }}
-        {rule->comment }}
-        </li>
-    endforeach -->
-</ul>
-
+    <ul>
+        @foreach ($rules as $rule)
+                <li>
+                    {{ $rule->title }}
+                    {{ $rule->comment }}
+                </li>
+            </a>
+        @endforeach
+    </ul>
 </body>
 </x-app-layout>

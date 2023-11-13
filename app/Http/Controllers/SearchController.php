@@ -45,8 +45,10 @@ class SearchController extends Controller
         $town = Town::find(1); 
         return view('shops.shop')->with(['shops' => $shop->get()]);;
     }
-    public function rule(Town $town ,Rule $rule)
+    public function rule(Town $town, Rule $rule)
     {
-        return view('towns.rule', ['town' => $town, 'rules' => $rule]);
+        $rules = Rule::where('town_id', $town->id)->get();
+    
+        return view('towns.rule', ['town' => $town, 'rules' => $rules]);
     }
 }

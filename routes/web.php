@@ -26,10 +26,10 @@ Route::prefix('/')->group(function () {
     Route::get('/search', [SearchController::class, 'search'])->name('search');
     Route::get('/{town}/about', [SearchController::class, 'about'])->name('about');
     Route::post('/{town}/towns', [RegisterController::class, 'registerTown'])->name('registerTown');
-    Route::get('/newinformation/{town}', [BoardController::class, 'newinformation'])->name('newinformation');
+    Route::get('/newinformation/{town}', [BoardController::class, 'newInformation'])->name('newInformation');
     Route::get('/trouble/{town}', [BoardController::class, 'trouble'])->name('trouble');
     Route::get('/{town}/shops', [SearchController::class, 'shopsearch'])->name('shopsearch');
-    Route::get('/{town}/rules', [SearchController::class, 'rule'])->name('rule');
+    Route::get('/rules/{town}', [SearchController::class, 'rule'])->name('rule');
 });
  });
 require __DIR__.'/auth.php';
