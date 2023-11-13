@@ -14,7 +14,7 @@
     </form>
 </div>
 <h2 class='title'>最新情報</h2>
-<a href="/newinformation/{{ $town->id }}">view</a>
+<a href="/articles/{{ $town->id }}">view</a>
 <h2 class='title'>まちのお悩み掲示板</h2>
 <a href="/trouble/{{ $town->id }}">view</a>
 <h2 class='title'>基本ルール</h2>

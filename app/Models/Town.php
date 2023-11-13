@@ -21,4 +21,8 @@ class Town extends Model
     {
         return $this->hasMany(Mytown::class);
     }
+    public function newinformations()
+    {
+        return $this->hasMany(NewInformation::class);
+    }
 }
