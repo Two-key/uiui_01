@@ -17,9 +17,16 @@ class TroubleSeeder extends Seeder
     public function run()
     {
         DB::table('troubles')->insert([
+            'town_id' => '1',
             'title' => '何曜日にゴミを捨てるの？',
             'comment' => '〇曜日に燃えるゴミ、第３土曜日に燃えないゴミだよ。',
-            'town_id' => '1',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ]);
+        DB::table('troubles')->insert([
+            'town_id' => '2',
+            'title' => '粗大ごみはいつ出すの？',
+            'comment' => '毎月25日だよ。',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);

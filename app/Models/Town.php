@@ -21,8 +21,12 @@ class Town extends Model
     {
         return $this->hasMany(Mytown::class);
     }
-    public function newinformations()
+    public function articles()
     {
-        return $this->hasMany(NewInformation::class);
+        return $this->hasMany(Article::class);
+    }
+    public function troubles()
+    {
+        return $this->hasMany(Trouble::class);
     }
 }
