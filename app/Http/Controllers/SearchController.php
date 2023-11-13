@@ -8,6 +8,7 @@ use App\Models\Town;
 use App\Models\Shop;
 use App\Models\Rule;
 use App\Models\Article;
+use App\Models\Trouble;
 
 class SearchController extends Controller
 {
@@ -56,6 +57,25 @@ class SearchController extends Controller
         $filteredArticles = [];
     }
     return view('towns.article')->with(['articles' => $filteredArticles, 'articlesearch' => $articlesearch, 'town' => $town]);
+}
+
+    public function troublesearch(Town $town, Request $request)
+{
+    $troubles = Trouble::where('town_id', $town->id)->get();
+    
+    $troublesearch = $request->input('troublesearch');
+    
+    $troubles = Trouble::where('title', 'like', "%{$troublesearch}%")->get();
+    
+    if ($troublesearch) {
+        
+        $filteredTroubles = $troubles;
+
+        $request->session()->put('selected_trouble_name', $filteredTroubles->first()->name);
+    } else {
+        $filteredTroubles = [];
+    }
+    return view('towns.trouble')->with(['troubles' => $filteredTroubles, 'troublesearch' => $troublesearch, 'town' => $town]);
 }
 
     public function shopsearch(Town $town ,Shop $shop)
