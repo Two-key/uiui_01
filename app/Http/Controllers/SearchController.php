@@ -9,6 +9,7 @@ use App\Models\Shop;
 use App\Models\Rule;
 use App\Models\Article;
 use App\Models\Trouble;
+use App\Models\Category;
 
 class SearchController extends Controller
 {
@@ -78,11 +79,40 @@ class SearchController extends Controller
     return view('towns.trouble')->with(['troubles' => $filteredTroubles, 'troublesearch' => $troublesearch, 'town' => $town]);
 }
 
-    public function shopsearch(Town $town ,Shop $shop)
-    {
-        $town = Town::find(1); 
-        return view('shops.shop')->with(['shops' => $shop->get()]);;
+    public function shopsearch(Town $town, Request $request, Category $category)
+{
+    // 最初のクエリで指定された都市の店舗を取得
+    $townShops = Shop::where('town_id', $town->id)->get();
+
+    // 検索キーワードを取得
+    $shopsearch = $request->input('shopsearch');
+
+    //検索キーワードがある場合、名前にキーワードが含まれる店舗を検索
+    if ($shopsearch) {
+        $filteredShops = Shop::where('name', 'like', "%{$shopsearch}%")->get();
+
+        // 検索結果がある場合、最初の店舗の名前をセッションに保存
+        if ($filteredShops->isNotEmpty()) {
+            $request->session()->put('selected_shop_name', $filteredShops->first()->name);
+        }
+    } else {
+        // 検索キーワードがない場合は指定された都市の店舗を表示
+        $filteredShops = $townShops;
     }
+
+    // view にデータを渡す
+    return view('shops.shopsearch')->with([
+        'shops' => $filteredShops,
+        'shopsearch' => $shopsearch,
+        'town' => $town,
+        'categories' => $category
+    ]);
+}
+
+   
+
+    
+    
     public function rule(Town $town, Rule $rule)
     {
         $rules = Rule::where('town_id', $town->id)->get();

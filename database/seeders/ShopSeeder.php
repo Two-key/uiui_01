@@ -18,10 +18,18 @@ class ShopSeeder extends Seeder
     {
 
         DB::table('shops')->insert([
-        'name' => '〇〇商店',
-        'address' => '福岡県福岡市〇〇町',
+        'name' => '佐藤商店',
+        'address' => '福岡県福岡市西町',
         'category_id' => '1',
         'town_id' => '1',
+        'created_at' => new DateTime(),
+        'updated_at' => new DateTime(),
+        ]);
+        DB::table('shops')->insert([
+        'name' => '田中商店',
+        'address' => '福岡県福岡市東町',
+        'category_id' => '1',
+        'town_id' => '2',
         'created_at' => new DateTime(),
         'updated_at' => new DateTime(),
         ]);

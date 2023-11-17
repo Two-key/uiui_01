@@ -20,6 +20,6 @@
 <h2 class='title'>基本ルール</h2>
 <a href="/rules/{{$town->id}}">view</a>
 <h2 class='title'>お店</h2>
-<a href="/{{ $town->id }}/shops">view</a>
+<a href="/shopsearch">view</a>
 </body>
 </x-app-layout>
