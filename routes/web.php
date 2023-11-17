@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\CategoryController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,7 +32,9 @@ Route::prefix('/')->group(function () {
     Route::get('/articlesearch', [SearchController::class, 'articlesearch'])->name('articlesearch');
     Route::get('/troubles/{town}', [BoardController::class, 'trouble'])->name('trouble');
     Route::get('/troublesearch', [SearchController::class, 'troublesearch'])->name('troublesearch');
-    Route::get('/{town}/shops', [SearchController::class, 'shopsearch'])->name('shopsearch');
+    Route::get('/{shop}/shops', [ShopController::class, 'shop'])->name('shop');
+    Route::get('/shopsearch', [SearchController::class, 'shopsearch'])->name('shopsearch');
+    Route::get('/categories/shops', [CategoryController::class, 'categorysearch'])->name('categorysearch');
     Route::get('/rules/{town}', [SearchController::class, 'rule'])->name('rule');
 });
  });
